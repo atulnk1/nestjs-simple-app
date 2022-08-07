@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Req } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
@@ -14,22 +14,25 @@ export class UserController {
     }
 
     @Post() 
+    // @Body decorator ensures that only the Request Body is taken in with the correct Data Transfer Object Format
     store(@Body() createUserDto: CreateUserDto) {
         return this.userService.create(createUserDto)
     }
 
     @Patch('/:userId')
-    update(@Body() updateUserDto: UpdateUserDto, @Param() param: { userId: number}) {
-        return this.userService.update(updateUserDto, param)
+    // Validation Pipe to ensure that the parameter being passed here can only be of type int 
+    update(@Body() updateUserDto: UpdateUserDto, @Param('userId', ParseIntPipe) userId: number) {
+        return this.userService.update(updateUserDto, userId)
     }
 
     @Get('/:userId')
-    getUser(@Param() param: { userId: number}) {
-        return this.userService.show(param)
+    
+    getUser(@Param('userId', ParseIntPipe) userId: number) {
+        return this.userService.show(userId)
     }
 
     @Delete('/:userId')
-    deleteUser(@Param() param: { userId: number }) {
-        return this.userService.delete(param)
+    deleteUser(@Param('userId', ParseIntPipe) userId: number ) {
+        return this.userService.delete(userId)
     }
 }
