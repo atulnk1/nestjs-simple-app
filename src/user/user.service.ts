@@ -17,18 +17,18 @@ export class UserService {
     }
 
     create(createUserDto: CreateUserDto) {
-        return createUserDto
+        return this.usersRepository.save(createUserDto)
     }
 
-    update(updateUserDto: UpdateUserDto, userId: number) {
-        return { body: updateUserDto, userId }
+    update(updateUserDto: UpdateUserDto, id: number) {
+        return this.usersRepository.update(id, updateUserDto)
     }
 
-    show(userId: number) {
-        return { userId }
+    show(id: number): Promise<User> {
+        return this.usersRepository.findOne({where: {id}})
     }
 
-    delete(userId: number) {
-        return { userId }
+    delete(id: number) {
+        return this.usersRepository.delete(id)
     }
 }
