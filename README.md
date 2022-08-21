@@ -8,7 +8,7 @@ This was an attempt to make a simple authentication app with Nestjs, Passport an
 
 I laregely followed the tutorial found [here](https://www.youtube.com/watch?v=Mgr5_r70OJQ&ab_channel=Bitfumes).
 
-If you needa guide to set up mysql on mac as it was not covered in the video, you can find it [here](https://stackoverflow.com/questions/15450091/error-2002-hy000-cant-connect-to-local-mysql-server-through-socket-tmp-mys)
+If you need a guide to set up mysql on mac as it was not covered in the video, you can find it [here](https://stackoverflow.com/questions/15450091/error-2002-hy000-cant-connect-to-local-mysql-server-through-socket-tmp-mys)
 
 ## Installation
 
